@@ -1,3 +1,6 @@
+"""
+Modified From https://github.com/kuangliu/pytorch-cifar/blob/master/models/densenet.py
+"""
 import math
 
 import torch
