@@ -1,7 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
 import torch
-from torch._jit_internal import weak_script_method
 import numpy as np
 from scipy.stats import norm
 from scipy.optimize import fsolve
@@ -11,7 +10,6 @@ class sPReLU(nn.PReLU):
     def __init__(self, num_parameters=1, init=0.25):
         super(sPReLU, self).__init__(num_parameters, init)
 
-    @weak_script_method
     def forward(self, input):
         self.weight.clamp(0, 0.5)
         return F.prelu(input, self.weight) / torch.sqrt(1. + self.weight ** 2)
