@@ -18,7 +18,7 @@ from tqdm import tqdm
 from tensorboardX import SummaryWriter
 from imagenet.utils import Results
 import torch.nn.functional as F
-from imagenet.utils import mixup_criterion, mixup_data, mixup_lam_idx
+from imagenet.utils import mixup_criterion, mixup_data
 
 model_names = sorted(name for name in models.__dict__
                      if name.islower() and not name.startswith("__")

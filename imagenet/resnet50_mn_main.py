@@ -18,7 +18,7 @@ from tqdm import tqdm
 from tensorboardX import SummaryWriter
 from utils.result_processor import Results
 import torch.nn.functional as F
-from utils.mixup import *
+from imagenet.utils import mixup_criterion, mixup_data
 
 # Dataset and model configuration
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
