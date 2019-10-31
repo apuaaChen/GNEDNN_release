@@ -14,6 +14,9 @@ parser.add_argument('--gpu', default='0', help='using which GPU')
 
 args = parser.parse_args()
 
+if not os.path.exists('./json'):
+    os.mkdir('./json')
+
 # Experiments in Sec. 5.2: Initialization Techniques
 initial_exp = {
     'file': 'initialization_main --size=32 --lr=0.01 --epochs=130 --gpu=' + args.gpu,
