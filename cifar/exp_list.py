@@ -16,7 +16,7 @@ args = parser.parse_args()
 
 # Experiments in Sec. 5.2: Initialization Techniques
 initial_exp = {
-    'file': 'initialization_main.py --size=32 --lr=0.01 --epochs=130 --gpu=' + args.gpu,
+    'file': 'initialization_main --size=32 --lr=0.01 --epochs=130 --gpu=' + args.gpu,
     'exps': [
         # baseline models
         '--init_fn=kaiming_norm --neuron=relu --norm_fn=bn --list=bn_relu',
@@ -66,7 +66,7 @@ initial_exp = {
 
 # Experiments in Sec. 5.3: Normalization Techniques
 normal_exp = {
-    'file': 'normalization_main.py --lr=0.01 --epochs=130 --gpu=' + args.gpu,
+    'file': 'normalization_main --lr=0.01 --epochs=130 --gpu=' + args.gpu,
     'exps': [
         # For weight normalization
         '--size=32 --init_fn=kaiming_norm --neuron=relu --norm_fn=wn --conv=naive --list=wn32 --epochs=4',
@@ -81,7 +81,7 @@ normal_exp = {
 
 # Experiments in Sec. 5.4: Self-Normalizing Neural Network
 selu_exp = {
-    'file': 'initialization_serial.py --size=32 --lr=0.01 --epochs=130 --gpu=' + args.gpu,
+    'file': 'initialization_serial --size=32 --lr=0.01 --epochs=130 --gpu=' + args.gpu,
     'exps': [
         '--init_fn=kaiming_norm --neuron=selu --norm_fn=none --list=km_selu --gain=1.',
         # baseline model for original SeLU
@@ -119,7 +119,7 @@ selu_exp = {
 }
 
 densenet_exp = {
-    'file': 'densenet_main.py --epochs=130 --gpu=' + args.gpu,
+    'file': 'densenet_main --epochs=130 --gpu=' + args.gpu,
     'exps': [
         '--init_fn=kaiming_norm --neuron=relu --norm_fn=bn --list=dn_bn --lr=0.1',
         # A baseline model
@@ -142,7 +142,7 @@ densenet_exp = {
 }
 
 resnet_exp = {
-    'file': 'resnet_multiple.py --size=56 --epochs=200 --gpu=' + args.gpu,
+    'file': 'resnet_main --size=56 --epochs=200 --gpu=' + args.gpu,
     'exps': [
         # baseline model
         '--init_fn=kaiming_norm --neuron=relu --norm_fn=bn --list=res_bn --lr=0.1',
@@ -189,7 +189,7 @@ def run():
     exp_dict = types[args.type]
     for i in range(args.repeat):
         for exp in exp_dict['exps']:
-            cmd = 'python ' + './cifar/' + exp_dict['file'] + ' ' + exp\
+            cmd = 'python -m' + ' cifar.' + exp_dict['file'] + ' ' + exp\
                   + ' --log=exp%d' % (i + args.start) + ' --root=' + args.dataset_dir
             os.system(cmd)
 
