@@ -57,7 +57,7 @@ class serialNetNorm(nn.Module):
         :param norm_fn: function for normalization
         :param activ_fn: the activation function
         """
-        super(serialNet, self).__init__()
+        super(serialNetNorm, self).__init__()
         self.in_planes = 16
         block, num_blocks = blocks[depth]
 
