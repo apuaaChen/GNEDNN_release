@@ -84,7 +84,7 @@ normal_exp = {
 
 # Experiments in Sec. 5.4: Self-Normalizing Neural Network
 selu_exp = {
-    'file': 'initialization_serial --size=32 --lr=0.01 --epochs=130 --gpu=' + args.gpu,
+    'file': 'initialization_main --size=32 --lr=0.01 --epochs=130 --gpu=' + args.gpu,
     'exps': [
         '--init_fn=kaiming_norm --neuron=selu --norm_fn=none --list=km_selu --gain=1.',
         # baseline model for original SeLU
