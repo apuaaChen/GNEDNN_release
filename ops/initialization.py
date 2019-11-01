@@ -95,6 +95,7 @@ class Initializer:
             if rows != 1:
                 tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
             else:
+                print('depthwise!')
                 tensor[:, :, mid1, mid2] = 1
 
             tensor.mul_(gain)
