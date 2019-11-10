@@ -75,6 +75,7 @@ class serialNet(nn.Module):
         self.linear = nn.Linear(64 * block.expansion, num_classes)
 
         if init_fn is not None:
+            print('initialization!')
             self.apply(init_fn)
 
     def _make_layer(self, block, planes, num_blocks, stride):

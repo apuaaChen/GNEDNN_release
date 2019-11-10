@@ -12,6 +12,7 @@ class Initializer:
             'orthogonal': self.delta_orthogonal,
         }
         self.init = init_fns[method]
+        print(self.init)
         self.nonlinearity = nonlinearity
         self.manual = manual
         self.neg_slope = neg_slope
@@ -91,13 +92,9 @@ class Initializer:
         q = torch.t(q)
         mid1 = tensor.size(2) // 2
         mid2 = tensor.size(3) // 2
+        print(gain)
         with torch.no_grad():
-            if rows != 1:
-                tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
-            else:
-                print('depthwise!')
-                tensor[:, :, mid1, mid2] = 1
-
+            tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
             tensor.mul_(gain)
 
         return tensor
