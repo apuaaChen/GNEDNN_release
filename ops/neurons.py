@@ -41,7 +41,7 @@ class SeLUv2(nn.Module):
             ]
 
         [self.lamb_, self.alpha_] = fsolve(func, [1., 1.])
-        # print(r'$\lambda=%.4f,~~\alpha=%.4f$' % (self.lamb_, self.alpha_))
+        print(r'$\lambda=%.4f,~~\alpha=%.4f$' % (self.lamb_, self.alpha_))
 
     def forward(self, input):
         return self.lamb_ * F.elu(input, self.alpha_)

@@ -92,7 +92,6 @@ class Initializer:
         q = torch.t(q)
         mid1 = tensor.size(2) // 2
         mid2 = tensor.size(3) // 2
-        print(gain)
         with torch.no_grad():
             tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
             tensor.mul_(gain)
