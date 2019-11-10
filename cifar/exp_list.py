@@ -100,24 +100,6 @@ selu_exp = {
         '--init_fn=kaiming_norm --neuron=seluv2 --norm_fn=none '
         '--fixpoint=1. --gain=1.4142535 --epsilon=0.03 --list=km_seluv2_g2_e3',
         # gain=2, epsilon=3
-
-        # with orthogonal initialization
-
-        '--init_fn=orthogonal --neuron=selu --norm_fn=none --list=orth_selu --gain=1.',
-        # baseline model for original SeLU
-
-        '--init_fn=orthogonal --neuron=seluv2 --norm_fn=none '
-        '--fixpoint=1. --gain=1. --epsilon=0.0716 --list=orth_seluv2_g1_e7',
-        # reproduce the baseline model
-
-        '--init_fn=orthogonal --neuron=seluv2 --norm_fn=none '
-        '--fixpoint=1. --gain=1. --epsilon=0.03 --list=orth_seluv2_g1_e3',
-        # epsilon=3
-
-        '--init_fn=orthogonal --neuron=seluv2 --norm_fn=none '
-        '--fixpoint=1. --gain=1.4142535 --epsilon=0.03 --list=orth_seluv2_g2_e3',
-        # epsilon=3
-
     ]
 }
 
