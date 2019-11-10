@@ -12,7 +12,6 @@ class Initializer:
             'orthogonal': self.delta_orthogonal,
         }
         self.init = init_fns[method]
-        print(self.init)
         self.nonlinearity = nonlinearity
         self.manual = manual
         self.neg_slope = neg_slope
@@ -94,7 +93,8 @@ class Initializer:
         mid2 = tensor.size(3) // 2
         with torch.no_grad():
             tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
-            tensor.mul_(gain)
+            fan_in, fan_out = init._calculate_fan_in_and_fan_out()
+            tensor.mul_(gain * np.sqrt(fan_out / fan_in))
 
         return tensor
 
