@@ -93,7 +93,7 @@ class Initializer:
         mid2 = tensor.size(3) // 2
         with torch.no_grad():
             tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
-            fan_in, fan_out = init._calculate_fan_in_and_fan_out()
+            fan_in, fan_out = init._calculate_fan_in_and_fan_out(tensor)
             tensor.mul_(gain * np.sqrt(fan_out / fan_in))
 
         return tensor
