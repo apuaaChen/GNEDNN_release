@@ -120,7 +120,7 @@ densenet_exp = {
         '--init_fn=kaiming_norm --neuron=relu --norm_fn=none --conv=normed --list=dn_wn --lr=0.1',
         # weight normalization
 
-        '--init_fn=orthogonal --neuron=seluv2 --norm_fn=none '
+        '--init_fn=kaiming_norm --neuron=seluv2 --norm_fn=none '
         '--fixpoint=1. --gain=1.4142535 --epsilon=0.03 --list=dn_orth_seluv2_g2_e3 --lr=0.1',
         # SeLU + orthogonal + epsilon=3 + gamma_0=2
     ]
