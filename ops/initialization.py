@@ -68,7 +68,7 @@ class Initializer:
             raise ValueError("Only tensors with 2 or more dimensions are supported")
 
         rows = tensor.size(0)
-        cols = tensor.numel() // rows
+        cols = tensor.numel() // rows  # get the total number of elements in the kernel
         flattened = tensor.new(rows, cols).normal_(0, 1)
 
         if rows < cols:
