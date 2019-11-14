@@ -9,7 +9,7 @@ class Initializer:
     def __init__(self, method, nonlinearity, neg_slope=0.18, manual=-1., fixup=False, L=27., m=2., p=2., bns=False):
         init_fns = {
             'kaiming_norm': self.kaiming_normal,
-            'orthogonal': self.delta_orthogonal,
+            'orthogonal': self.orthogonal,
         }
         self.init = init_fns[method]
         self.nonlinearity = nonlinearity
@@ -37,7 +37,7 @@ class Initializer:
         else:
             gain_ = optimal[self.nonlinearity]
         if self.fixup:
-            scale = np.power(self.L, -self.p/2./self.m)
+            scale = np.power(self.L, -self.p / 2. / self.m)
             gain_ *= scale
         return gain_
 
@@ -57,45 +57,36 @@ class Initializer:
             return tensor.normal_(0, std)
 
     """
-    Orthogonal initialization
-    Introduced in "Dynamical Isometry and a Mean Field Theory of CNNs: 
-                   How to Train 10,000-Layer Vanilla Convolutional Neural Networks"
-    Implement of "https://github.com/JiJingYu/delta_orthogonal_init_pytorch"
+    Orthogonal Initialization
+    Introduced in "Exact solutions to the nonlinear dynamics of learning in deep linear neural networks"
+    Implement is modified from init.orthogonal_ of pytorch
     """
 
-    @staticmethod
-    def _orthogonal_matrix(dim):
-        """
-        Creating orthogonal matrix with QR decomposition
-        """
-        a = torch.zeros((dim, dim)).normal_(0, 4)
-        q, r = torch.qr(a)
-        d = torch.diag(r, 0).sign()
-        diag_size = d.size(0)
-        d_exp = d.view(1, diag_size).expand(diag_size, diag_size)
-        q.mul_(d_exp)
-        return q
-
-    def delta_orthogonal(self, tensor):
-        """
-        Delta Orthogonal initialization
-        """
+    def orthogonal(self, tensor):
         gain = self.gain()
-        rows = tensor.size(1)
-        cols = tensor.size(0)
-        # if rows > cols:
-        #     print("In_filters should not be greater than out_filters.")
-        tensor.data.fill_(0)
-        dim = max(rows, cols)
-        q = Initializer._orthogonal_matrix(dim)
-        q = torch.t(q)
-        mid1 = tensor.size(2) // 2
-        mid2 = tensor.size(3) // 2
-        with torch.no_grad():
-            tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
-            fan_in, fan_out = init._calculate_fan_in_and_fan_out(tensor)
-            tensor.mul_(gain * np.sqrt(fan_out / fan_in))
+        if tensor.ndimension() < 2:
+            raise ValueError("Only tensors with 2 or more dimensions are supported")
 
+        rows = tensor.size(0)
+        cols = tensor.numel() // rows
+        flattened = tensor.new(rows, cols).normal_(0, 1)
+
+        if rows < cols:
+            flattened.t_()
+
+        # Compute the qr factorization
+        q, r = torch.qr(flattened)
+        # Make Q uniform according to https://arxiv.org/pdf/math-ph/0609050.pdf
+        d = torch.diag(r, 0)
+        ph = d.sign()
+        q *= ph
+
+        if rows < cols:
+            q.t_()
+
+        with torch.no_grad():
+            tensor.view_as(q).copy_(q)
+            tensor.mul_(gain)
         return tensor
 
     def initialization(self, m):
