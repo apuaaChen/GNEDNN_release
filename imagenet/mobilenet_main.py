@@ -17,7 +17,7 @@ import torchvision.datasets as datasets
 from imagenet.models import MobileNet
 from tqdm import tqdm
 from tensorboardX import SummaryWriter
-from utils.result_processor import Results
+from imagenet.utils.result_processor import Results
 import numpy as np
 from ops import SeLUv2, Initializer
 
