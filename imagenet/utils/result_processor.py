@@ -10,6 +10,8 @@ class Results:
     def __init__(self, exp_name, writer):
         self.exp_name = exp_name
         self.writer = writer
+        if not os.path.exists('./json/'):
+            os.mkdir('./json/')
         if not os.path.exists('./json/' + exp_name):
             os.mkdir('./json/' + exp_name)
 
