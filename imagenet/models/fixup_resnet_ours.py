@@ -196,6 +196,5 @@ def resnet50(pretrained=False, progress=True, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
         progress (bool): If True, displays a progress bar of the download to stderr
     """
-    print('use fixup initialization')
     return _resnet('resnet50', FixupBottleneck, [3, 4, 6, 3], pretrained, progress,
                    **kwargs)
