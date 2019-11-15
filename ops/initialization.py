@@ -10,6 +10,7 @@ class Initializer:
         init_fns = {
             'kaiming_norm': self.kaiming_normal,
             'orthogonal': self.orthogonal,
+            'delta_orth': self.delta_orthogonal,
         }
         self.init = init_fns[method]
         self.nonlinearity = nonlinearity
@@ -87,6 +88,45 @@ class Initializer:
         with torch.no_grad():
             tensor.view_as(q).copy_(q)
             tensor.mul_(gain)
+        return tensor
+
+    """
+    Delta Orthogonal initialization
+    Introduced in "Dynamical Isometry and a Mean Field Theory of CNNs: 
+                   How to Train 10,000-Layer Vanilla Convolutional Neural Networks"
+    Implement of "https://github.com/JiJingYu/delta_orthogonal_init_pytorch"
+    """
+
+    @staticmethod
+    def _orthogonal_matrix(dim):
+        """
+        Creating orthogonal matrix with QR decomposition
+        """
+        a = torch.zeros((dim, dim)).normal_(0, 4)
+        q, r = torch.qr(a)
+        d = torch.diag(r, 0).sign()
+        diag_size = d.size(0)
+        d_exp = d.view(1, diag_size).expand(diag_size, diag_size)
+        q.mul_(d_exp)
+        return q
+
+    def delta_orthogonal(self, tensor):
+        """
+        Delta Orthogonal initialization
+        """
+        gain = self.gain()
+        rows = tensor.size(1)
+        cols = tensor.size(0)
+        tensor.data.fill_(0)
+        dim = max(rows, cols)
+        q = Initializer._orthogonal_matrix(dim)
+        q = torch.t(q)
+        mid1 = tensor.size(2) // 2
+        mid2 = tensor.size(3) // 2
+        with torch.no_grad():
+            tensor[:, :, mid1, mid2] = q[:tensor.size(0), :tensor.size(1)]
+            fan_in, fan_out = init._calculate_fan_in_and_fan_out(tensor)
+            tensor.mul_(gain * np.sqrt(fan_out/fan_in))
         return tensor
 
     def initialization(self, m):

@@ -55,6 +55,20 @@ initial_exp = {
         '--init_fn=orthogonal --neuron=sprelu --norm_fn=none --list=orth_sprelu',
         # orthogonal normal + spReLU
 
+        # For orthogonal initialization
+        '--init_fn=delta_orth --neuron=relu --norm_fn=none --list=dorth_relu',
+        # orthogonal normal + ReLU
+        '--init_fn=delta_orth --neuron=tanh --norm_fn=none --list=dorth_tanh',
+        # orthogonal normal + tanh
+        '--init_fn=delta_orth --neuron=leaky_relu --norm_fn=none --list=dorth_lrelu --neg_slope=0.18',
+        # orthogonal normal + leaky ReLU
+        '--init_fn=delta_orth --neuron=prelu --norm_fn=none --list=dorth_prelu',
+        # orthogonal normal + pReLU
+        '--init_fn=delta_orth --neuron=sprelu --norm_fn=none --list=dorth_sprelu',
+        # orthogonal normal + spReLU
+
+        # For delta orthogonal initialization
+
         # For leaky ReLU with different negative slopes
         # baseline models
         '--init_fn=kaiming_norm --neuron=leaky_relu --norm_fn=bn --list=bn_lrelu3 --neg_slope=0.3',
@@ -63,6 +77,11 @@ initial_exp = {
         '--init_fn=orthogonal --neuron=leaky_relu --norm_fn=none --list=orth_lrelu3 --neg_slope=0.3',
         # negative slope=0.5
         '--init_fn=orthogonal --neuron=leaky_relu --norm_fn=none --list=orth_lrelu5 --neg_slope=0.5',
+
+        # negative slope=0.3
+        '--init_fn=delta_orth --neuron=leaky_relu --norm_fn=none --list=dorth_lrelu3 --neg_slope=0.3',
+        # negative slope=0.5
+        '--init_fn=delta_orth --neuron=leaky_relu --norm_fn=none --list=dorth_lrelu5 --neg_slope=0.5',
     ]
 }
 

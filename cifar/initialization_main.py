@@ -26,7 +26,7 @@ parser.add_argument('--epochs', default=130, type=int, help='total training epoc
 parser.add_argument('--root', default='/', help='location of cifar-10 dataset')
 
 # initialization method
-parser.add_argument('--init_fn', choices=['kaiming_norm', 'orthogonal'], default='kaiming_norm',
+parser.add_argument('--init_fn', choices=['kaiming_norm', 'orthogonal', 'delta_orth'], default='kaiming_norm',
                     help='the initialization method for models')
 
 # activation function
