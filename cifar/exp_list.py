@@ -140,23 +140,23 @@ selu_exp = {
 densenet_exp = {
     'file': 'densenet_main --epochs=130 --gpu=' + args.gpu,
     'exps': [
-        '--init_fn=kaiming_norm --neuron=relu --norm_fn=bn --list=dn_bn --lr=0.1',
+        # '--init_fn=kaiming_norm --neuron=relu --norm_fn=bn --list=dn_bn --lr=0.1',
         # A baseline model
-        '--init_fn=kaiming_norm --neuron=relu --norm_fn=none --list=dn_km_relu --lr=0.1',
+        # '--init_fn=kaiming_norm --neuron=relu --norm_fn=none --list=dn_km_relu --lr=0.1',
         # A kaiming norm baseline
 
-        '--init_fn=orthogonal --neuron=leaky_relu --norm_fn=none --list=dn_orth_lrelu3 --neg_slope=0.3 --lr=0.1',
+        # '--init_fn=orthogonal --neuron=leaky_relu --norm_fn=none --list=dn_orth_lrelu3 --neg_slope=0.3 --lr=0.1',
         # leaky ReLU + orthogonal initialization + negative slope=0.3
 
-        '--init_fn=kaiming_norm --neuron=relu --norm_fn=l2n --conv=centered --list=dn_l2norm --lr=0.1',
+        # '--init_fn=kaiming_norm --neuron=relu --norm_fn=l2n --conv=centered --list=dn_l2norm --lr=0.1',
         # second moment normalization
 
-        '--init_fn=kaiming_norm --neuron=relu --norm_fn=none --conv=normed --list=dn_wn --lr=0.1',
+        # '--init_fn=kaiming_norm --neuron=relu --norm_fn=none --conv=normed --list=dn_wn --lr=0.1',
         # weight normalization
 
-        '--init_fn=kaiming_norm --neuron=seluv2 --norm_fn=none '
-        '--fixpoint=1. --gain=1.4142535 --epsilon=0.03 --list=dn_orth_seluv2_g2_e3 --lr=0.1',
-        # SeLU + orthogonal + epsilon=3 + gamma_0=2
+        '--init_fn=orthogonal --neuron=seluv2 --norm_fn=none '
+        '--fixpoint=1. --gain=1.414265 --epsilon=0.03 --list=dn_orth_seluv2_g2_e3 --lr=0.1',
+        # SeLU + orthogonal + epsilon=3 + gamma_0=1
     ]
 }
 
