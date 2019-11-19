@@ -14,7 +14,7 @@ import torch.utils.data
 import torch.utils.data.distributed
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-from imagenet.models import fixup_resnet_ours, fixup_resnet
+from imagenet.models import ResNet_fixup, ResNet_fixup_ours
 from tqdm import tqdm
 from tensorboardX import SummaryWriter
 from utils.result_processor import Results
@@ -152,10 +152,10 @@ def main_worker(gpu, ngpus_per_node, args_):
                                 world_size=args_.world_size, rank=args_.rank)
     # create model
     if args.ours:
-        model = fixup_resnet_ours
+        model = ResNet_fixup_ours
         print('Ours')
     else:
-        model = fixup_resnet
+        model = ResNet_fixup
         print('Reproduce')
 
     if args_.distributed:

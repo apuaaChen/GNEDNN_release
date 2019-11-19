@@ -55,10 +55,6 @@ For BN + mixup:
 ```
 python -m imagenet.resnet50_mixup_main imagenet_dir -a=resnet50 -b=256 --gpus='0,1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:5005' --rank=0 --world-size=1 -j=8 --epochs=90 --log=Resnet50_mixup --alpha=0.2
 ```
-For Second moment normalization
-```
-python -m imagenet.resnet50_mn_main imagenet_dir -b=256 --gpus='0,1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:5005' --rank=0 --world-size=1 -j=8 --epoch=90 --log=resnet50_smn
-```
 For Second moment normalization + mixup
 ```
 python -m imagenet.resnet50_mn_main imagenet_dir -b=256 --gpus='0,1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:5005' --rank=0 --world-size=1 -j=8 --epoch=90 --log=resnet50_smn_mixup_0.2 --alpha=0.2
