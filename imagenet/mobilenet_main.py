@@ -85,7 +85,7 @@ parser.add_argument('--log', type=str, default='test', help='the name for the lo
 parser.add_argument('--selu', action='store_true', help='using selu instead of BN')
 parser.add_argument('--fixpoint', default=1., type=float, help='fixpoint of 2nd moment in SeLU')
 parser.add_argument('--epsilon', default=0.03, type=float, help='epsilon in SeLU')
-parser.add_argument('--init_fn', choices=['kaiming_norm', 'orthogonal'], default='kaiming_norm')
+parser.add_argument('--init_fn', choices=['kaiming_norm', 'orthogonal', 'delta_orth'], default='kaiming_norm')
 parser.add_argument('--norm_fn', choices=['none', 'bn'], default='bn')
 parser.add_argument('--gain', default=1., type=float, help='manual gain for initialization')
 

@@ -24,9 +24,9 @@ For SeLU baseline:
 ```
 python -m imagenet.mobilenet_main imagenet_dir -b=512 --gpus='0,1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:2003' --rank=0 --world-size=1 -j=16 --epochs=90 --log=mobilenet_selu_dense --init_fn='kaiming_norm' --norm_fn='none' --neuron='selu' --epochs=90 --lr=0.02 --dense
 ```
-For SeLU epsilon=0.065:
+For SeLU epsilon=0.06:
 ```
-python -m imagenet.mobilenet_main imagenet_dir -b=512 --gpus='0,1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:2003' --rank=0 --world-size=1 -j=16 --epochs=90 --log=mobilenet_seluv2_0.065 --init_fn='kaiming_norm' --norm_fn='none' --neuron='seluv2' --selu --fixpoint=1. --epsilon=0.065 --gain=1. --epochs=90 --lr=0.02 --dense
+python -m imagenet.mobilenet_main imagenet_dir -b=512 --gpus='0,1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:2003' --rank=0 --world-size=1 -j=16 --epochs=90 --log=mobilenet_seluv2_0.06 --init_fn='kaiming_norm' --norm_fn='none' --neuron='seluv2' --selu --fixpoint=1. --epsilon=0.065 --gain=1. --epochs=90 --lr=0.02 --dense
 ```
 For SeLU epsilon=0.03:
 ```
