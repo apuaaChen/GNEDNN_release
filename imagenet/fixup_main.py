@@ -17,7 +17,7 @@ import torchvision.datasets as datasets
 from imagenet.models import ResNet_fixup, ResNet_fixup_ours
 from tqdm import tqdm
 from tensorboardX import SummaryWriter
-from utils.result_processor import Results
+from imagenet.utils.result_processor import Results
 import torch.nn.functional as F
 from imagenet.utils import mixup_data, mixup_criterion
 
