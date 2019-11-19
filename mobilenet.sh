@@ -1,1 +1,0 @@
-python -m imagenet.mobilenet_main /raid/datasets/ImageNet2012/ -b=512 --gpus='2,3' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:2003' --rank=0 --world-size=1 -j=16 --epochs=90 --log=mobilenet_orth_lrelu_llr_dense_v2 --init_fn='orthogonal' --norm_fn='none' --neuron='leaky_relu' --neg_slope=0.3 --epochs=90 --lr=0.02 --dense
