@@ -67,9 +67,9 @@ python -m imagenet.resnet50_mn_main imagenet_dir -b=256 --gpus='0,1' --multiproc
 ```
 For Original Fixup initialization
 ```
-python -m imagenet.fixup_main imagenet_dir -b=256 --gpus='0, 1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:5005' --rank=0 --world-size=1 -j=8 --epochs=100 --log=ResNet50_fixup
+python -m imagenet.fixup_main imagenet_dir -b=256 --gpus='0, 1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:5005' --rank=0 --world-size=1 -j=8 --epochs=90 --log=ResNet50_fixup
 ```
 For our Fixup initialization
 ```
-python -m imagenet.fixup_main imagenet_dir -b=256 --gpus='0, 1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:5005' --rank=0 --world-size=1 -j=8 --epochs=100 --log=ResNet50_fixup_ours --ours
+python -m imagenet.fixup_main imagenet_dir -b=256 --gpus='0, 1' --multiprocessing-distributed --dist-url='tcp://127.0.0.1:5005' --rank=0 --world-size=1 -j=8 --epochs=90 --log=ResNet50_fixup_ours --ours
 ```
