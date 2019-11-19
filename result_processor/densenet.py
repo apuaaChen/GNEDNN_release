@@ -72,4 +72,4 @@ for idx, sub in enumerate(subplots):
 
 # plt.show()
 
-plt.savefig('./selu_exp.pdf', bbox_inches='tight')
+plt.savefig('./dense_exp.pdf', bbox_inches='tight')

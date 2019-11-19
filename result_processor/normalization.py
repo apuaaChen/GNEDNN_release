@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 subplots = [121, 122]
-root = 'json/'
+root = '../json/'
 
 exp = ['bn_relu', 'l2norm', 'wn', 'l1norm']
 
@@ -61,5 +61,5 @@ plt.ylabel('Test Acc')
 plt.ylim(35, 92)
 plt.grid(True)
 plt.legend(loc='lower right', fontsize=15)
-plt.show()
-# plt.savefig('./norm_exp.pdf', bbox_inches='tight')
+# plt.show()
+plt.savefig('./norm_exp.pdf', bbox_inches='tight')
