@@ -82,7 +82,7 @@ parser.add_argument('--alpha', default=0.7, type=float, help='interpolation stre
 parser.add_argument('--log', type=str, default='test', help='the name for the log')
 
 # for fixup
-parser.add_argument('--ours', action='store_true', help='using mixup augmentation')
+parser.add_argument('--ours', action='store_true', help='using our model')
 
 args = parser.parse_args()
 
