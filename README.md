@@ -7,6 +7,8 @@ All the experiments on CIFAR-10 are summarized in cifar/exp_list.py. To run each
 bash cifar10.sh cifar10_dir initialization 1 4 0
 ```
 ```cifar10_dir ``` is the directory to the dataset. ```initialization``` indecates the segment to run. ```1``` suggests that the experiment is running on gpu 1. ```4``` means that each experiment is run for 4 times. ```0``` suggests that the experiments' index starts from ```0```.
+
+Some experiments may occasionally fail to converge, since the kernel size is quite small for CIFAR-10, thus the random initialization may occasionally fall into the worse points. But in most times they converge well.
 ***
 ##### ImageNet
 
