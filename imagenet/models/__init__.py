@@ -1,5 +1,6 @@
 from imagenet.models import resnet_mn, mobilenet, fixup_resnet, fixup_resnet_ours
 from ops import L2Norm2d, L1Norm2d
+from moment_norm import fusedL2Norm2d
 
 
 ResNetL2 = resnet_mn.resnet50(L2Norm2d, pretrained=False)

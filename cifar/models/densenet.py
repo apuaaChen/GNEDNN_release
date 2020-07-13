@@ -78,7 +78,7 @@ class DenseNet(nn.Module):
         else:
             self.acf = activ_fn
 
-        if norm_fn is 'wn':
+        if norm_fn == 'wn':
             self.norm = MeanOnlyBN
             self.wn = True
         else:

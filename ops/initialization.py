@@ -135,11 +135,11 @@ class Initializer:
         elif isinstance(m, nn.Conv2d):
             self.init(m.weight)
         elif isinstance(m, Conv2d_):
-            if m.marker is 'b' or 'be':
+            if m.marker == 'b' or m.marker == 'be':
                 self.init(m.weight)
-            elif m.marker is 'd':
+            elif m.marker == 'd':
                 init.kaiming_normal_(m.weight, nonlinearity='linear')
-            elif m.marker is 'i':
+            elif m.marker == 'i':
                 init.kaiming_normal_(m.weight, nonlinearity='relu')
             else:
                 print('Warnning: unlabeled Conv operator')

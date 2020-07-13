@@ -48,11 +48,11 @@ class Cifar10Provider:
         trainset = torchvision.datasets.CIFAR10(root=self.root,
                                                 train=True, download=True, transform=transform_train)
         self.trainloader = torch.utils.data.DataLoader(trainset, batch_size=self.bs[0], shuffle=True,
-                                                       num_workers=self.workers)
+                                                       num_workers=self.workers, drop_last=True)
 
         testset = torchvision.datasets.CIFAR10(root=self.root,
                                                train=False, download=True, transform=transform_test)
         self.testloader = torch.utils.data.DataLoader(testset, batch_size=self.bs[1], shuffle=False,
-                                                      num_workers=self.workers)
+                                                      num_workers=self.workers, drop_last=True)
 
         self.classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')

@@ -120,3 +120,13 @@ class MeanOnlyBN(nn.BatchNorm2d):
 
         y = self.bias.view(-1, 1) + y
         return y.view(return_shape).transpose(0, 1)
+
+
+class GhostBN(nn.Module):
+    def __init__(self, plane):
+        super(GhostBN, self).__init__()
+        self.bn = nn.BatchNorm2d(plane * 32)
+    def forward(self, x):
+        N, C, H, W = x.size()
+        x_ = x.view((int(N / 32), C * 32, H, W))
+        return self.bn(x_).view(x.size())
